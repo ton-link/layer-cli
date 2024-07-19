@@ -5,6 +5,7 @@ import { register } from '../validator/action/register';
 import { info } from '../validator/action/info';
 import { remove } from '../validator/action/remove';
 import { add } from '../validator/action/add';
+import { start_validator } from '../validator/action/start_validation';
 
 const program = new Command();
 
@@ -26,7 +27,8 @@ async function main() {
         validator.command('info').description('Displaying information about an already registered validator').action(() => {info()})
         validator.command('remove').description('Remove stake').action(() => {remove()})
         validator.command('add').description('Add stake').action(() => {add()})
-
+        validator.command('start').description('Start validation SRV').action(() => {start_validator()})
+        
         // TODO
         let val_reward = validator.command('rewards')
         val_reward.command('collect').description('Collect rewards from Tonlink SRVs')
