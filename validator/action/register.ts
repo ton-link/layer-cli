@@ -38,15 +38,9 @@ export async function register() {
         InfoLog(`stTON wallet balance: ${Number(await jst_wallet.getJettonBalance())}`)
 
         try {
-                let res = await vm_contract.get_info_validator()
-                if (res.percent > 0) {
-                        throw new TypeError('Already registered') 
-                }
-        } catch (e) {
-                if ((e as Error).message != "") {
-                        throw new TypeError('Already registered')
-                } 
-        }
+                await vm_contract.get_info_validator()
+                throw new TypeError('Already registered') 
+        } catch (e) {}
 
         if (Number(await wallet.getSeqno()) < 1) {
                 throw new TypeError('Need an initialised wallet')
