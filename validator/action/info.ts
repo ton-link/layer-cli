@@ -29,7 +29,7 @@ export async function info() {
         let vm_contract = client.open(ValidatorManager.createFromAddress(await hub_contract.get_validation_manager_by_validator(wallet?.address)))
 
         InfoLog(`stTON wallet address: ${jst_wallet.address}`)
-        InfoLog(`stTON wallet balance: ${Number(await jst_wallet.getJettonBalance())}`)
+        InfoLog(`stTON wallet balance: ${Number(await jst_wallet.getJettonBalance()) / 10**9}`)
 
         InfoLog(`ValidatorManager address: ${vm_contract.address.toString()}`)
         InfoLog('ValidatorManager info: ')
