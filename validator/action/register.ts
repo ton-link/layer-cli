@@ -32,12 +32,12 @@ export async function register() {
         )
 
         let hub_contract = client.open(Hub.createFromAddress(Address.parse(HubAddress)))
-        let vm_contract = client.open(ValidatorManager.createFromAddress(await hub_contract.get_validation_manager_by_validator(wallet?.address)))
 
         InfoLog(`stTON wallet address: ${jst_wallet.address}`)
         InfoLog(`stTON wallet balance: ${Number(await jst_wallet.getJettonBalance())}`)
 
         try {
+                let vm_contract = client.open(ValidatorManager.createFromAddress(await hub_contract.get_validation_manager_by_validator(wallet?.address)))
                 await vm_contract.get_info_validator()
                 throw new TypeError('Already registered') 
         } catch (e) {}
